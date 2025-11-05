@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mundo da Química</title>
+  <title>Universo da Química</title>
   <style>
-    /* === ESTILO GERAL === */
+    /* ====== CONFIGURAÇÕES GERAIS ====== */
     * {
       margin: 0;
       padding: 0;
@@ -20,45 +20,49 @@
       min-height: 100vh;
     }
 
-    /* === CABEÇALHO === */
+    /* ====== CABEÇALHO ====== */
     header {
-      width: 100%;
       position: fixed;
       top: 0;
       left: 0;
-      background: rgba(0, 0, 0, 0.4);
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(10px);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 50px;
+      padding: 15px 60px;
       z-index: 1000;
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+      box-shadow: 0 0 15px #00e0ff55;
     }
 
     header h1 {
-      font-size: 1.8em;
       color: #00e0ff;
-      text-shadow: 0 0 10px #00e0ff;
+      text-shadow: 0 0 15px #00e0ff;
+      font-size: 1.8em;
     }
 
     nav a {
-      color: white;
+      color: #fff;
       text-decoration: none;
       margin: 0 15px;
-      font-weight: 500;
+      font-weight: 600;
       position: relative;
-      transition: 0.3s;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #00e0ff;
     }
 
     nav a::after {
       content: "";
       position: absolute;
-      width: 0%;
+      width: 0;
       height: 2px;
       background: #00e0ff;
-      bottom: -5px;
       left: 0;
+      bottom: -5px;
       transition: width 0.3s;
     }
 
@@ -66,26 +70,36 @@
       width: 100%;
     }
 
-    /* === SEÇÃO PRINCIPAL === */
+    /* ====== ANIMAÇÃO DE PARTÍCULAS ====== */
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: radial-gradient(circle at 50% 50%, #001a33, #000);
+    }
+
+    /* ====== CONTEÚDO PRINCIPAL ====== */
     main {
-      padding-top: 120px;
       text-align: center;
-      position: relative;
+      padding-top: 150px;
+      padding-bottom: 80px;
     }
 
     main h2 {
-      font-size: 2.5em;
+      font-size: 2.8em;
       color: #00e0ff;
-      text-shadow: 0 0 15px #00e0ff;
-      margin-bottom: 20px;
+      text-shadow: 0 0 20px #00e0ff;
     }
 
     main p {
-      max-width: 700px;
-      margin: 0 auto;
+      max-width: 800px;
+      margin: 20px auto;
       font-size: 1.2em;
-      line-height: 1.6em;
-      color: #ccefff;
+      line-height: 1.6;
+      color: #dffaff;
     }
 
     .buttons {
@@ -96,155 +110,263 @@
       display: inline-block;
       background: #00e0ff;
       color: #000;
-      padding: 12px 25px;
+      padding: 12px 30px;
       border-radius: 30px;
       text-decoration: none;
       margin: 10px;
       font-weight: bold;
-      box-shadow: 0 0 10px #00e0ff;
-      transition: 0.3s;
+      box-shadow: 0 0 20px #00e0ff;
+      transition: all 0.3s;
     }
 
     .buttons a:hover {
-      background: #00b0cc;
-      box-shadow: 0 0 20px #00e0ff;
+      transform: scale(1.1);
+      box-shadow: 0 0 35px #00e0ff;
     }
 
-    /* === ANIMAÇÃO DE MOLÉCULAS === */
-    .molecule {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 200px;
-      height: 200px;
-      transform: translate(-50%, -50%);
-      animation: spin 10s linear infinite;
-      z-index: -1;
-    }
-
-    .atom {
-      position: absolute;
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-      background: #00e0ff;
-      box-shadow: 0 0 15px #00e0ff;
-      animation: orbit 6s linear infinite;
-    }
-
-    .atom:nth-child(1) { top: 0; left: 50%; animation-delay: 0s; }
-    .atom:nth-child(2) { right: 0; top: 50%; animation-delay: 2s; }
-    .atom:nth-child(3) { bottom: 0; left: 50%; animation-delay: 4s; }
-
-    @keyframes orbit {
-      from { transform: rotate(0deg) translateX(100px) rotate(0deg); }
-      to { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
-    }
-
-    @keyframes spin {
-      from { transform: translate(-50%, -50%) rotate(0deg); }
-      to { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-
-    /* === SEÇÕES EXTRAS === */
+    /* ====== SEÇÕES ====== */
     section {
-      padding: 80px 20px;
+      padding: 100px 20px;
       text-align: center;
+      background: rgba(255, 255, 255, 0.03);
+      border-top: 1px solid #00e0ff33;
+    }
+
+    section:nth-child(even) {
+      background: rgba(255, 255, 255, 0.07);
     }
 
     section h3 {
-      color: #00e0ff;
       font-size: 2em;
+      color: #00e0ff;
+      text-shadow: 0 0 10px #00e0ff;
       margin-bottom: 20px;
     }
 
     section p {
       max-width: 800px;
       margin: 0 auto;
-      line-height: 1.6;
+      font-size: 1.1em;
+      line-height: 1.6em;
       color: #ccefff;
     }
 
-    /* === RODAPÉ === */
+    section ul {
+      list-style: none;
+      margin-top: 20px;
+    }
+
+    section ul li {
+      margin: 10px 0;
+      font-size: 1.1em;
+    }
+
+    section ul li a {
+      color: #00e0ff;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    section ul li a:hover {
+      text-shadow: 0 0 10px #00e0ff;
+    }
+
+    /* ====== RODAPÉ ====== */
     footer {
-      background: rgba(0, 0, 0, 0.5);
       text-align: center;
-      padding: 20px;
+      padding: 30px;
+      background: rgba(0, 0, 0, 0.6);
       color: #aaa;
-      font-size: 0.9em;
-      margin-top: 60px;
       border-top: 1px solid #00e0ff33;
     }
 
-    /* === RESPONSIVIDADE === */
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-      }
-      .buttons a {
-        display: block;
-        margin: 10px auto;
-        width: 200px;
-      }
+    footer a {
+      color: #00e0ff;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-shadow: 0 0 10px #00e0ff;
     }
   </style>
 </head>
 <body>
 
+  <!-- ANIMAÇÃO DE PARTÍCULAS -->
+  <canvas id="particles"></canvas>
+
   <header>
-    <h1>Mundo da Química</h1>
+    <h1>Universo da Química</h1>
     <nav>
       <a href="#inicio">Início</a>
       <a href="#tabela">Tabela Periódica</a>
       <a href="#experimentos">Experimentos</a>
       <a href="#curiosidades">Curiosidades</a>
+      <a href="#materiais">Materiais e Compostos</a>
+      <a href="#historia">História da Química</a>
+      <a href="#contato">Contato</a>
     </nav>
   </header>
 
   <main id="inicio">
-    <div class="molecule">
-      <div class="atom"></div>
-      <div class="atom"></div>
-      <div class="atom"></div>
-    </div>
-
-    <h2>A Ciência das Transformações!</h2>
+    <h2>Explore o Universo da Química!</h2>
     <p>
-      A Química é a ciência que estuda a matéria, suas propriedades, transformações e as leis que as regem.
-      Presente em tudo ao nosso redor — desde o ar que respiramos até os dispositivos eletrônicos que usamos —,
-      a Química é a base para a inovação e o futuro da humanidade.
+      Descubra o poder das reações, dos elementos e das forças invisíveis que moldam o mundo ao seu redor.  
+      Aqui, você vai aprender sobre os fundamentos da Química e mergulhar em experiências fascinantes.
     </p>
 
     <div class="buttons">
-      <a href="#tabela">Explorar Tabela Periódica</a>
-      <a href="#experimentos">Ver Experimentos</a>
+      <a href="#tabela">Tabela Periódica</a>
+      <a href="#experimentos">Experimentos</a>
       <a href="#curiosidades">Curiosidades</a>
+      <a href="#materiais">Compostos</a>
     </div>
   </main>
 
   <section id="tabela">
     <h3>🧩 Tabela Periódica</h3>
-    <p>A Tabela Periódica organiza os elementos químicos de acordo com suas propriedades. 
-    Cada elemento é representado por um símbolo, número atômico e massa atômica. 
-    É uma das ferramentas mais importantes da ciência moderna.</p>
+    <p>
+      A Tabela Periódica é o mapa da Química. Ela organiza os elementos com base em suas propriedades,
+      revelando padrões e famílias que explicam como a matéria se comporta.
+    </p>
+    <ul>
+      <li><a href="#">Tabela completa interativa</a></li>
+      <li><a href="#">História dos elementos</a></li>
+      <li><a href="#">Descobertas recentes</a></li>
+    </ul>
   </section>
 
   <section id="experimentos">
-    <h3>🔬 Experimentos</h3>
-    <p>Experimente o fascinante mundo das reações químicas! 
-    Desde vulcões caseiros até experimentos com mudança de cor e pH, a Química pode ser divertida, educativa e visualmente incrível.</p>
+    <h3>🔬 Experimentos Químicos</h3>
+    <p>
+      Aprenda como fazer reações simples e seguras para observar fenômenos incríveis.
+    </p>
+    <ul>
+      <li><a href="#">Vulcão de Bicarbonato</a></li>
+      <li><a href="#">Lâmpada de Lava Caseira</a></li>
+      <li><a href="#">Mudança de Cor do Repolho Roxo</a></li>
+      <li><a href="#">Explosão de Mentos com Refrigerante</a></li>
+    </ul>
   </section>
 
   <section id="curiosidades">
-    <h3>💡 Curiosidades</h3>
-    <p>Sabia que o ouro é um dos poucos metais que não enferruja? 
-    Ou que o corpo humano é composto por cerca de 65% de oxigênio em massa? 
-    A Química explica esses e muitos outros fenômenos incríveis do nosso mundo!</p>
+    <h3>💡 Curiosidades Químicas</h3>
+    <p>
+      Você sabia que o diamante e o grafite são feitos do mesmo elemento?  
+      A diferença está apenas na forma como os átomos de carbono se organizam!
+    </p>
+    <ul>
+      <li><a href="#">A Química dos Sabores</a></li>
+      <li><a href="#">O cheiro da chuva</a></li>
+      <li><a href="#">Por que o ferro enferruja?</a></li>
+    </ul>
+  </section>
+
+  <section id="materiais">
+    <h3>⚗️ Materiais e Compostos</h3>
+    <p>
+      Explore substâncias que mudaram o mundo — do plástico aos supercondutores.
+    </p>
+    <ul>
+      <li><a href="#">Água: O solvente universal</a></li>
+      <li><a href="#">O poder do carbono</a></li>
+      <li><a href="#">Ligas metálicas</a></li>
+      <li><a href="#">Compostos orgânicos e inorgânicos</a></li>
+    </ul>
+  </section>
+
+  <section id="historia">
+    <h3>📜 História da Química</h3>
+    <p>
+      Da alquimia antiga até a ciência moderna, a Química passou por séculos de evolução.
+    </p>
+    <ul>
+      <li><a href="#">A era dos alquimistas</a></li>
+      <li><a href="#">Lavoisier e a revolução química</a></li>
+      <li><a href="#">A descoberta dos elétrons e prótons</a></li>
+      <li><a href="#">A Química quântica moderna</a></li>
+    </ul>
+  </section>
+
+  <section id="contato">
+    <h3>📫 Contato</h3>
+    <p>
+      Quer enviar dúvidas, ideias ou experimentos?  
+      Envie um e-mail para: <a href="mailto:contato@universodaquimica.com">contato@universodaquimica.com</a>
+    </p>
   </section>
 
   <footer>
-    &copy; 2025 Mundo da Química — Desenvolvido com 💙 e curiosidade científica.
+    &copy; 2025 Universo da Química — Criado com 💙 e curiosidade científica.  
+    <br><a href="#inicio">Voltar ao topo</a>
   </footer>
+
+  <!-- ====== SCRIPT DE ANIMAÇÃO ====== -->
+  <script>
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let particlesArray;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', function(){
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      init();
+    });
+
+    class Particle {
+      constructor(x, y, size, speedX, speedY) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.speedX = speedX;
+        this.speedY = speedY;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+        if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+      }
+      draw() {
+        ctx.fillStyle = 'rgba(0, 224, 255, 0.8)';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.fill();
+      }
+    }
+
+    function init() {
+      particlesArray = [];
+      let numberOfParticles = 100;
+      for (let i = 0; i < numberOfParticles; i++) {
+        let size = Math.random() * 3 + 1;
+        let x = Math.random() * innerWidth;
+        let y = Math.random() * innerHeight;
+        let speedX = (Math.random() * 0.5) - 0.25;
+        let speedY = (Math.random() * 0.5) - 0.25;
+        particlesArray.push(new Particle(x, y, size, speedX, speedY));
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particlesArray.length; i++) {
+        particlesArray[i].update();
+        particlesArray[i].draw();
+      }
+      requestAnimationFrame(animate);
+    }
+
+    init();
+    animate();
+  </script>
 
 </body>
 </html>
+
+
