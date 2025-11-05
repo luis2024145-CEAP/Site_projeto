@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Universo da Química</title>
   <style>
-    /* ====== CONFIGURAÇÕES GERAIS ====== */
     * {
       margin: 0;
       padding: 0;
@@ -17,38 +16,34 @@
       background: radial-gradient(circle at top, #001f3f, #000814);
       color: #fff;
       overflow-x: hidden;
-      min-height: 100vh;
     }
 
-    /* ====== CABEÇALHO ====== */
     header {
       position: fixed;
       top: 0;
-      left: 0;
       width: 100%;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(10px);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 60px;
-      z-index: 1000;
+      padding: 15px 40px;
+      z-index: 10;
       box-shadow: 0 0 15px #00e0ff55;
     }
 
     header h1 {
       color: #00e0ff;
-      text-shadow: 0 0 15px #00e0ff;
-      font-size: 1.8em;
+      text-shadow: 0 0 10px #00e0ff;
     }
 
     nav a {
       color: #fff;
       text-decoration: none;
-      margin: 0 15px;
+      margin: 0 12px;
       font-weight: 600;
+      transition: 0.3s;
       position: relative;
-      transition: color 0.3s;
     }
 
     nav a:hover {
@@ -60,9 +55,9 @@
       position: absolute;
       width: 0;
       height: 2px;
-      background: #00e0ff;
       left: 0;
       bottom: -5px;
+      background: #00e0ff;
       transition: width 0.3s;
     }
 
@@ -70,7 +65,6 @@
       width: 100%;
     }
 
-    /* ====== ANIMAÇÃO DE PARTÍCULAS ====== */
     canvas {
       position: fixed;
       top: 0;
@@ -78,100 +72,88 @@
       width: 100%;
       height: 100%;
       z-index: -1;
-      background: radial-gradient(circle at 50% 50%, #001a33, #000);
+      background: radial-gradient(circle at center, #001a33, #000);
     }
 
-    /* ====== CONTEÚDO PRINCIPAL ====== */
     main {
       text-align: center;
-      padding-top: 150px;
-      padding-bottom: 80px;
+      padding-top: 130px;
+      padding-bottom: 60px;
+      max-width: 900px;
+      margin: auto;
     }
 
     main h2 {
       font-size: 2.8em;
       color: #00e0ff;
-      text-shadow: 0 0 20px #00e0ff;
+      text-shadow: 0 0 15px #00e0ff;
     }
 
     main p {
-      max-width: 800px;
-      margin: 20px auto;
       font-size: 1.2em;
+      margin: 20px 0;
+      color: #ccefff;
       line-height: 1.6;
-      color: #dffaff;
-    }
-
-    .buttons {
-      margin-top: 40px;
     }
 
     .buttons a {
       display: inline-block;
+      margin: 10px;
+      padding: 12px 25px;
       background: #00e0ff;
       color: #000;
-      padding: 12px 30px;
-      border-radius: 30px;
+      border-radius: 25px;
       text-decoration: none;
-      margin: 10px;
       font-weight: bold;
-      box-shadow: 0 0 20px #00e0ff;
-      transition: all 0.3s;
+      box-shadow: 0 0 15px #00e0ff;
+      transition: 0.3s;
     }
 
     .buttons a:hover {
       transform: scale(1.1);
-      box-shadow: 0 0 35px #00e0ff;
+      box-shadow: 0 0 30px #00e0ff;
     }
 
-    /* ====== SEÇÕES ====== */
     section {
       padding: 100px 20px;
       text-align: center;
-      background: rgba(255, 255, 255, 0.03);
       border-top: 1px solid #00e0ff33;
-    }
-
-    section:nth-child(even) {
-      background: rgba(255, 255, 255, 0.07);
+      background: rgba(255, 255, 255, 0.03);
     }
 
     section h3 {
-      font-size: 2em;
       color: #00e0ff;
-      text-shadow: 0 0 10px #00e0ff;
+      font-size: 2em;
       margin-bottom: 20px;
+      text-shadow: 0 0 10px #00e0ff;
     }
 
-    section p {
-      max-width: 800px;
-      margin: 0 auto;
+    section p, section ul {
+      max-width: 900px;
+      margin: auto;
       font-size: 1.1em;
-      line-height: 1.6em;
       color: #ccefff;
+      line-height: 1.6;
     }
 
     section ul {
       list-style: none;
-      margin-top: 20px;
+      margin-top: 15px;
     }
 
     section ul li {
-      margin: 10px 0;
-      font-size: 1.1em;
+      margin: 8px 0;
     }
 
     section ul li a {
       color: #00e0ff;
       text-decoration: none;
-      transition: 0.3s;
     }
 
     section ul li a:hover {
       text-shadow: 0 0 10px #00e0ff;
     }
 
-    /* ====== RODAPÉ ====== */
     footer {
       text-align: center;
       padding: 30px;
@@ -188,33 +170,42 @@
     footer a:hover {
       text-shadow: 0 0 10px #00e0ff;
     }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+      }
+      nav a {
+        display: block;
+        margin: 8px 0;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- ANIMAÇÃO DE PARTÍCULAS -->
   <canvas id="particles"></canvas>
 
   <header>
-    <h1>Universo da Química</h1>
+    <h1>🌌 Universo da Química</h1>
     <nav>
       <a href="#inicio">Início</a>
-      <a href="#tabela">Tabela Periódica</a>
+      <a href="#tabela">Tabela</a>
       <a href="#experimentos">Experimentos</a>
       <a href="#curiosidades">Curiosidades</a>
-      <a href="#materiais">Materiais e Compostos</a>
-      <a href="#historia">História da Química</a>
+      <a href="#materiais">Compostos</a>
+      <a href="#historia">História</a>
       <a href="#contato">Contato</a>
     </nav>
   </header>
 
   <main id="inicio">
-    <h2>Explore o Universo da Química!</h2>
+    <h2>Bem-vindo ao Universo da Química!</h2>
     <p>
-      Descubra o poder das reações, dos elementos e das forças invisíveis que moldam o mundo ao seu redor.  
-      Aqui, você vai aprender sobre os fundamentos da Química e mergulhar em experiências fascinantes.
+      A Química é a ciência que explica tudo o que existe: a composição da matéria, as reações,
+      a energia e as transformações que moldam o universo.  
+      Aqui você vai aprender, explorar e se encantar com o poder dos átomos!
     </p>
-
     <div class="buttons">
       <a href="#tabela">Tabela Periódica</a>
       <a href="#experimentos">Experimentos</a>
@@ -226,95 +217,92 @@
   <section id="tabela">
     <h3>🧩 Tabela Periódica</h3>
     <p>
-      A Tabela Periódica é o mapa da Química. Ela organiza os elementos com base em suas propriedades,
-      revelando padrões e famílias que explicam como a matéria se comporta.
+      A Tabela Periódica organiza os elementos químicos por número atômico e propriedades.
+      É um mapa do universo químico.  
+      Desde o hidrogênio até os elementos superpesados, ela mostra os padrões da natureza.
     </p>
     <ul>
-      <li><a href="#">Tabela completa interativa</a></li>
-      <li><a href="#">História dos elementos</a></li>
-      <li><a href="#">Descobertas recentes</a></li>
+      <li><a href="https://ptable.com" target="_blank">Tabela Periódica Interativa</a></li>
+      <li><a href="#">Famílias Químicas</a></li>
+      <li><a href="#">Propriedades Periódicas</a></li>
     </ul>
   </section>
 
   <section id="experimentos">
     <h3>🔬 Experimentos Químicos</h3>
     <p>
-      Aprenda como fazer reações simples e seguras para observar fenômenos incríveis.
+      Aprenda com a prática! Veja reações e fenômenos que mostram como a química está viva.
     </p>
     <ul>
-      <li><a href="#">Vulcão de Bicarbonato</a></li>
-      <li><a href="#">Lâmpada de Lava Caseira</a></li>
-      <li><a href="#">Mudança de Cor do Repolho Roxo</a></li>
-      <li><a href="#">Explosão de Mentos com Refrigerante</a></li>
+      <li><strong>Vulcão de Bicarbonato:</strong> Reação entre vinagre e bicarbonato gerando CO₂.</li>
+      <li><strong>Indicador Natural:</strong> O suco de repolho roxo muda de cor com ácidos e bases.</li>
+      <li><strong>Lâmpada de Lava:</strong> Misture óleo, água e efervescentes — pura diversão!</li>
+      <li><a href="https://manualdaquimica.uol.com.br/experiencias" target="_blank">Mais Experimentos</a></li>
     </ul>
   </section>
 
   <section id="curiosidades">
     <h3>💡 Curiosidades Químicas</h3>
     <p>
-      Você sabia que o diamante e o grafite são feitos do mesmo elemento?  
-      A diferença está apenas na forma como os átomos de carbono se organizam!
+      A Química está presente em tudo — do sabor dos alimentos à tela do seu celular.
     </p>
     <ul>
-      <li><a href="#">A Química dos Sabores</a></li>
-      <li><a href="#">O cheiro da chuva</a></li>
-      <li><a href="#">Por que o ferro enferruja?</a></li>
+      <li>💎 O diamante e o grafite são feitos apenas de carbono!</li>
+      <li>☁️ O cheiro da chuva vem de compostos chamados geosmina.</li>
+      <li>🔥 O fogo é uma reação química chamada combustão.</li>
+      <li><a href="https://brasilescola.uol.com.br/quimica" target="_blank">Aprenda mais no Brasil Escola</a></li>
     </ul>
   </section>
 
   <section id="materiais">
-    <h3>⚗️ Materiais e Compostos</h3>
+    <h3>⚗️ Compostos e Materiais</h3>
     <p>
-      Explore substâncias que mudaram o mundo — do plástico aos supercondutores.
+      Materiais moldam o mundo moderno: metais, cerâmicas, plásticos, ligas e compostos avançados.  
+      A química dos materiais define a tecnologia e o progresso humano.
     </p>
     <ul>
-      <li><a href="#">Água: O solvente universal</a></li>
-      <li><a href="#">O poder do carbono</a></li>
-      <li><a href="#">Ligas metálicas</a></li>
-      <li><a href="#">Compostos orgânicos e inorgânicos</a></li>
+      <li><strong>Metais:</strong> bons condutores de eletricidade.</li>
+      <li><strong>Polímeros:</strong> usados em plásticos e borrachas.</li>
+      <li><strong>Cerâmicas:</strong> resistentes ao calor.</li>
+      <li><strong>Nanomateriais:</strong> estruturas em escala atômica com propriedades incríveis.</li>
     </ul>
   </section>
 
   <section id="historia">
     <h3>📜 História da Química</h3>
     <p>
-      Da alquimia antiga até a ciência moderna, a Química passou por séculos de evolução.
+      Da alquimia antiga à ciência moderna, a Química evoluiu para explicar o mundo.  
+      Antigos alquimistas buscavam transformar metais em ouro, sem saber que estavam abrindo caminho
+      para a Química moderna.
     </p>
     <ul>
-      <li><a href="#">A era dos alquimistas</a></li>
-      <li><a href="#">Lavoisier e a revolução química</a></li>
-      <li><a href="#">A descoberta dos elétrons e prótons</a></li>
-      <li><a href="#">A Química quântica moderna</a></li>
+      <li><strong>Lavoisier:</strong> Fundador da Química moderna (lei da conservação da massa).</li>
+      <li><strong>Mendeleev:</strong> Criador da Tabela Periódica.</li>
+      <li><strong>Marie Curie:</strong> Descobriu o rádio e o polônio.</li>
+      <li><a href="https://pt.wikipedia.org/wiki/Hist%C3%B3ria_da_qu%C3%ADmica" target="_blank">Mais sobre a História da Química</a></li>
     </ul>
   </section>
 
   <section id="contato">
     <h3>📫 Contato</h3>
     <p>
-      Quer enviar dúvidas, ideias ou experimentos?  
-      Envie um e-mail para: <a href="mailto:contato@universodaquimica.com">contato@universodaquimica.com</a>
+      Dúvidas, sugestões ou curiosidades?  
+      Envie um e-mail para <a href="mailto:contato@universodaquimica.com">contato@universodaquimica.com</a>
     </p>
   </section>
 
   <footer>
-    &copy; 2025 Universo da Química — Criado com 💙 e curiosidade científica.  
-    <br><a href="#inicio">Voltar ao topo</a>
+    &copy; 2025 Universo da Química — Desenvolvido com 💙 e curiosidade científica.
+    <br><a href="#inicio">Voltar ao topo ↑</a>
   </footer>
 
-  <!-- ====== SCRIPT DE ANIMAÇÃO ====== -->
   <script>
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
-    let particlesArray;
+    let particles = [];
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
-    window.addEventListener('resize', function(){
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      init();
-    });
 
     class Particle {
       constructor(x, y, size, speedX, speedY) {
@@ -327,46 +315,46 @@
       update() {
         this.x += this.speedX;
         this.y += this.speedY;
-
-        if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
-        if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
       }
       draw() {
-        ctx.fillStyle = 'rgba(0, 224, 255, 0.8)';
+        ctx.fillStyle = "rgba(0, 224, 255, 0.8)";
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.closePath();
         ctx.fill();
       }
     }
 
     function init() {
-      particlesArray = [];
-      let numberOfParticles = 100;
-      for (let i = 0; i < numberOfParticles; i++) {
+      particles = [];
+      for (let i = 0; i < 130; i++) {
         let size = Math.random() * 3 + 1;
-        let x = Math.random() * innerWidth;
-        let y = Math.random() * innerHeight;
-        let speedX = (Math.random() * 0.5) - 0.25;
-        let speedY = (Math.random() * 0.5) - 0.25;
-        particlesArray.push(new Particle(x, y, size, speedX, speedY));
+        let x = Math.random() * canvas.width;
+        let y = Math.random() * canvas.height;
+        let speedX = (Math.random() - 0.5) * 1.5;
+        let speedY = (Math.random() - 0.5) * 1.5;
+        particles.push(new Particle(x, y, size, speedX, speedY));
       }
     }
 
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = 0; i < particlesArray.length; i++) {
-        particlesArray[i].update();
-        particlesArray[i].draw();
+      for (let p of particles) {
+        p.update();
+        p.draw();
       }
       requestAnimationFrame(animate);
     }
 
     init();
     animate();
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      init();
+    });
   </script>
-
 </body>
 </html>
-
 
