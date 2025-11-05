@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mundo da Química</title>
+  <style>
+    /* ====== ESTILO GERAL ====== */
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      color: #fff;
+      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+      overflow-x: hidden;
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(5px);
+      text-align: center;
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      color: #00e0ff;
+      text-shadow: 0 0 15px #00e0ff;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #00e0ff;
+    }
+
+    /* ====== SEÇÃO PRINCIPAL ====== */
+    main {
+      text-align: center;
+      padding: 80px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    main h2 {
+      font-size: 2em;
+      color: #00e0ff;
+      text-shadow: 0 0 10px #00e0ff;
+    }
+
+    main p {
+      max-width: 700px;
+      margin: 20px auto;
+      font-size: 1.2em;
+      line-height: 1.6em;
+    }
+
+    /* ====== ANIMAÇÃO DE FUNDO ====== */
+    .bubbles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      background: rgba(0, 224, 255, 0.2);
+      border-radius: 50%;
+      animation: rise 10s infinite ease-in;
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-1200px) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    /* Tamanhos e posições diferentes para as bolhas */
+    .bubble:nth-child(1) { left: 10%; width: 40px; height: 40px; animation-duration: 9s; }
+    .bubble:nth-child(2) { left: 25%; width: 20px; height: 20px; animation-duration: 7s; animation-delay: 2s; }
+    .bubble:nth-child(3) { left: 40%; width: 50px; height: 50px; animation-duration: 12s; animation-delay: 4s; }
+    .bubble:nth-child(4) { left: 60%; width: 35px; height: 35px; animation-duration: 10s; animation-delay: 6s; }
+    .bubble:nth-child(5) { left: 80%; width: 25px; height: 25px; animation-duration: 8s; animation-delay: 1s; }
+
+    /* ====== RODAPÉ ====== */
+    footer {
+      background: rgba(0, 0, 0, 0.4);
+      text-align: center;
+      padding: 15px 0;
+      font-size: 0.9em;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Mundo da Química</h1>
+    <nav>
+      <a href="#inicio">Início</a>
+      <a href="#tabela">Tabela Periódica</a>
+      <a href="#experimentos">Experimentos</a>
+      <a href="#curiosidades">Curiosidades</a>
+    </nav>
+  </header>
+
+  <main id="inicio">
+    <div class="bubbles">
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+    </div>
+
+    <h2>A ciência que transforma o mundo</h2>
+    <p>
+      A <strong>Química</strong> estuda a composição, estrutura e transformações da matéria.  
+      Está presente em tudo — no ar que respiramos, na comida que comemos e até na tecnologia que usamos.
+    </p>
+    <p>
+      Explore os links acima para aprender mais sobre os elementos químicos, descobrir experimentos incríveis
+      e curiosidades fascinantes sobre o universo da química!
+    </p>
+  </main>
+
+  <footer>
+    &copy; 2025 Mundo da Química — Feito com 💙 e curiosidade científica.
+  </footer>
+
+</body>
+</html>
