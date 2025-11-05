@@ -1,362 +1,852 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Universo da Química</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
+<!DOCTYPE html> <!--001-->
+<html lang="pt-br"> <!--002-->
+<head> <!--003-->
+  <meta charset="UTF-8"> <!--004-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--005-->
+  <title>Universo da Química</title> <!--006-->
+  <style> <!--007-->
+    * { <!--008-->
+      margin: 0; <!--009-->
+      padding: 0; <!--010-->
+      box-sizing: border-box; <!--011-->
+      font-family: "Poppins", sans-serif; <!--012-->
+    } <!--013-->
 
-    body {
-      background: radial-gradient(circle at top, #001f3f, #000814);
-      color: #fff;
-      overflow-x: hidden;
-    }
+    body { <!--014-->
+      background: linear-gradient(120deg, #001f3f, #4b0082, #00ff99); <!--015-->
+      color: #fff; <!--016-->
+      overflow-x: hidden; <!--017-->
+      scroll-behavior: smooth; <!--018-->
+    } <!--019-->
 
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(10px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 40px;
-      z-index: 10;
-      box-shadow: 0 0 15px #00e0ff55;
-    }
+    header { <!--020-->
+      position: fixed; <!--021-->
+      top: 0; <!--022-->
+      width: 100%; <!--023-->
+      background: rgba(0,0,0,0.6); <!--024-->
+      backdrop-filter: blur(10px); <!--025-->
+      display: flex; <!--026-->
+      justify-content: space-between; <!--027-->
+      align-items: center; <!--028-->
+      padding: 15px 40px; <!--029-->
+      z-index: 10; <!--030-->
+      box-shadow: 0 0 20px #00ff99; <!--031-->
+    } <!--032-->
 
-    header h1 {
-      color: #00e0ff;
-      text-shadow: 0 0 10px #00e0ff;
-    }
+    header h1 { <!--033-->
+      color: #00e0ff; <!--034-->
+      text-shadow: 0 0 15px #4b0082, 0 0 25px #00ff99; <!--035-->
+    } <!--036-->
 
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 12px;
-      font-weight: 600;
-      transition: 0.3s;
-      position: relative;
-    }
+    nav a { <!--037-->
+      color: #fff; <!--038-->
+      text-decoration: none; <!--039-->
+      margin: 0 12px; <!--040-->
+      font-weight: 600; <!--041-->
+      transition: 0.3s; <!--042-->
+      position: relative; <!--043-->
+    } <!--044-->
 
-    nav a:hover {
-      color: #00e0ff;
-    }
+    nav a:hover { <!--045-->
+      color: #00ff99; <!--046-->
+    } <!--047-->
 
-    nav a::after {
-      content: "";
-      position: absolute;
-      width: 0;
-      height: 2px;
-      left: 0;
-      bottom: -5px;
-      background: #00e0ff;
-      transition: width 0.3s;
-    }
+    nav a::after { <!--048-->
+      content: ""; <!--049-->
+      position: absolute; <!--050-->
+      width: 0; <!--051-->
+      height: 2px; <!--052-->
+      left: 0; <!--053-->
+      bottom: -5px; <!--054-->
+      background: #00e0ff; <!--055-->
+      transition: width 0.3s; <!--056-->
+    } <!--057-->
 
-    nav a:hover::after {
-      width: 100%;
-    }
+    nav a:hover::after { <!--058-->
+      width: 100%; <!--059-->
+    } <!--060-->
 
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: radial-gradient(circle at center, #001a33, #000);
-    }
+    canvas { <!--061-->
+      position: fixed; <!--062-->
+      top: 0; <!--063-->
+      left: 0; <!--064-->
+      width: 100%; <!--065-->
+      height: 100%; <!--066-->
+      z-index: -1; <!--067-->
+      background: radial-gradient(circle at center, #001a33, #000); <!--068-->
+    } <!--069-->
 
-    main {
-      text-align: center;
-      padding-top: 130px;
-      padding-bottom: 60px;
-      max-width: 900px;
-      margin: auto;
-    }
+    main { <!--070-->
+      text-align: center; <!--071-->
+      padding-top: 130px; <!--072-->
+      padding-bottom: 60px; <!--073-->
+      max-width: 900px; <!--074-->
+      margin: auto; <!--075-->
+    } <!--076-->
 
-    main h2 {
-      font-size: 2.8em;
-      color: #00e0ff;
-      text-shadow: 0 0 15px #00e0ff;
-    }
+    main h2 { <!--077-->
+      font-size: 3em; <!--078-->
+      color: #00ff99; <!--079-->
+      text-shadow: 0 0 15px #00e0ff, 0 0 25px #4b0082; <!--080-->
+    } <!--081-->
 
-    main p {
-      font-size: 1.2em;
-      margin: 20px 0;
-      color: #ccefff;
-      line-height: 1.6;
-    }
+    main p { <!--082-->
+      font-size: 1.2em; <!--083-->
+      margin: 20px 0; <!--084-->
+      color: #ccefff; <!--085-->
+      line-height: 1.6; <!--086-->
+    } <!--087-->
 
-    .buttons a {
-      display: inline-block;
-      margin: 10px;
-      padding: 12px 25px;
-      background: #00e0ff;
-      color: #000;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 0 15px #00e0ff;
-      transition: 0.3s;
-    }
+    .buttons a { <!--088-->
+      display: inline-block; <!--089-->
+      margin: 10px; <!--090-->
+      padding: 12px 25px; <!--091-->
+      background: linear-gradient(45deg, #00e0ff, #00ff99, #4b0082); <!--092-->
+      color: #000; <!--093-->
+      border-radius: 25px; <!--094-->
+      text-decoration: none; <!--095-->
+      font-weight: bold; <!--096-->
+      box-shadow: 0 0 15px #00ff99; <!--097-->
+      transition: 0.3s; <!--098-->
+    } <!--099-->
 
-    .buttons a:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 30px #00e0ff;
-    }
+    .buttons a:hover { <!--100-->
+      transform: scale(1.1); <!--101-->
+      box-shadow: 0 0 30px #00ff99, 0 0 50px #4b0082; <!--102-->
+    } <!--103-->
 
-    section {
-      padding: 100px 20px;
-      text-align: center;
-      border-top: 1px solid #00e0ff33;
-      background: rgba(255, 255, 255, 0.03);
-    }
+    section { <!--104-->
+      padding: 100px 20px; <!--105-->
+      text-align: center; <!--106-->
+      border-top: 1px solid #00e0ff33; <!--107-->
+      background: rgba(255,255,255,0.03); <!--108-->
+    } <!--109-->
 
-    section h3 {
-      color: #00e0ff;
-      font-size: 2em;
-      margin-bottom: 20px;
-      text-shadow: 0 0 10px #00e0ff;
-    }
+    section h3 { <!--110-->
+      color: #00ff99; <!--111-->
+      font-size: 2em; <!--112-->
+      margin-bottom: 20px; <!--113-->
+      text-shadow: 0 0 10px #00e0ff, 0 0 15px #4b0082; <!--114-->
+    } <!--115-->
 
-    section p, section ul {
-      max-width: 900px;
-      margin: auto;
-      font-size: 1.1em;
-      color: #ccefff;
-      line-height: 1.6;
-    }
+    section p, section ul { <!--116-->
+      max-width: 900px; <!--117-->
+      margin: auto; <!--118-->
+      font-size: 1.1em; <!--119-->
+      color: #ccefff; <!--120-->
+      line-height: 1.6; <!--121-->
+    } <!--122-->
 
-    section ul {
-      list-style: none;
-      margin-top: 15px;
-    }
+    section ul { <!--123-->
+      list-style: none; <!--124-->
+      margin-top: 15px; <!--125-->
+    } <!--126-->
 
-    section ul li {
-      margin: 8px 0;
-    }
+    section ul li { <!--127-->
+      margin: 8px 0; <!--128-->
+    } <!--129-->
 
-    section ul li a {
-      color: #00e0ff;
-      text-decoration: none;
-    }
+    section ul li a { <!--130-->
+      color: #00e0ff; <!--131-->
+      text-decoration: none; <!--132-->
+    } <!--133-->
 
-    section ul li a:hover {
-      text-shadow: 0 0 10px #00e0ff;
-    }
+    section ul li a:hover { <!--134-->
+      text-shadow: 0 0 10px #00ff99; <!--135-->
+    } <!--136-->
 
-    footer {
-      text-align: center;
-      padding: 30px;
-      background: rgba(0, 0, 0, 0.6);
-      color: #aaa;
-      border-top: 1px solid #00e0ff33;
-    }
+    footer { <!--137-->
+      text-align: center; <!--138-->
+      padding: 30px; <!--139-->
+      background: rgba(0,0,0,0.6); <!--140-->
+      color: #aaa; <!--141-->
+      border-top: 1px solid #00e0ff33; <!--142-->
+    } <!--143-->
 
-    footer a {
-      color: #00e0ff;
-      text-decoration: none;
-    }
+    footer a { <!--144-->
+      color: #00ff99; <!--145-->
+      text-decoration: none; <!--146-->
+    } <!--147-->
 
-    footer a:hover {
-      text-shadow: 0 0 10px #00e0ff;
-    }
+    footer a:hover { <!--148-->
+      text-shadow: 0 0 10px #4b0082; <!--149-->
+    } <!--150-->
 
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-      }
-      nav a {
-        display: block;
-        margin: 8px 0;
-      }
-    }
-  </style>
-</head>
-<body>
+    @media (max-width: 768px) { <!--151-->
+      header { <!--152-->
+        flex-direction: column; <!--153-->
+      } <!--154-->
+      nav a { <!--155-->
+        display: block; <!--156-->
+        margin: 8px 0; <!--157-->
+      } <!--158-->
+    } <!--159-->
+  </style> <!--160-->
+</head> <!--161-->
+<body> <!--162-->
 
-  <canvas id="particles"></canvas>
+  <canvas id="particles"></canvas> <!--163-->
 
-  <header>
-    <h1>🌌 Universo da Química</h1>
-    <nav>
-      <a href="#inicio">Início</a>
-      <a href="#tabela">Tabela</a>
-      <a href="#experimentos">Experimentos</a>
-      <a href="#curiosidades">Curiosidades</a>
-      <a href="#materiais">Compostos</a>
-      <a href="#historia">História</a>
-      <a href="#contato">Contato</a>
-    </nav>
-  </header>
+  <header> <!--164-->
+    <h1>🌌 Universo da Química</h1> <!--165-->
+    <nav> <!--166-->
+      <a href="#inicio">Início</a> <!--167-->
+      <a href="#tabela">Tabela</a> <!--168-->
+      <a href="#experimentos">Experimentos</a> <!--169-->
+      <a href="#curiosidades">Curiosidades</a> <!--170-->
+      <a href="#materiais">Compostos</a> <!--171-->
+      <a href="#historia">História</a> <!--172-->
+      <a href="#contato">Contato</a> <!--173-->
+    </nav> <!--174-->
+  </header> <!--175-->
 
-  <main id="inicio">
-    <h2>Bem-vindo ao Universo da Química!</h2>
-    <p>
-      A Química é a ciência que explica tudo o que existe: a composição da matéria, as reações,
-      a energia e as transformações que moldam o universo.  
-      Aqui você vai aprender, explorar e se encantar com o poder dos átomos!
-    </p>
-    <div class="buttons">
-      <a href="#tabela">Tabela Periódica</a>
-      <a href="#experimentos">Experimentos</a>
-      <a href="#curiosidades">Curiosidades</a>
-      <a href="#materiais">Compostos</a>
-    </div>
-  </main>
+  <main id="inicio"> <!--176-->
+    <h2>Bem-vindo ao Universo da Química!</h2> <!--177-->
+    <p> <!--178-->
+      A Química é a ciência que explica tudo o que existe: a composição da matéria, <!--179-->
+      as reações, a energia e as transformações que moldam o universo. Aqui você vai <!--180-->
+      aprender, explorar e se encantar com o poder dos átomos e moléculas, desde as <!--181-->
+      mais simples até as mais complexas, observando suas interações coloridas e fascinantes. <!--182-->
+    </p> <!--183-->
+    <p> <!--184-->
+      Imagine um mundo onde cada partícula vibra com energia, cada reação é um espetáculo <!--185-->
+      e a tabela periódica é um mapa mágico, revelando os segredos do universo. Este <!--186-->
+      site foi criado para unir ciência e arte, despertando a curiosidade e o amor <!--187-->
+      pela Química em todos que visitam. <!--188-->
+    </p> <!--189-->
+    <div class="buttons"> <!--190-->
+      <a href="#tabela">Tabela Periódica</a> <!--191-->
+      <a href="#experimentos">Experimentos</a> <!--192-->
+      <a href="#curiosidades">Curiosidades</a> <!--193-->
+      <a href="#materiais">Compostos</a> <!--194-->
+    </div> <!--195-->
+  </main> <!--196-->
 
-  <section id="tabela">
-    <h3>🧩 Tabela Periódica</h3>
-    <p>
-      A Tabela Periódica organiza os elementos químicos por número atômico e propriedades.
-      É um mapa do universo químico.  
-      Desde o hidrogênio até os elementos superpesados, ela mostra os padrões da natureza.
-    </p>
-    <ul>
-      <li><a href="https://ptable.com" target="_blank">Tabela Periódica Interativa</a></li>
-      <li><a href="#">Famílias Químicas</a></li>
-      <li><a href="#">Propriedades Periódicas</a></li>
-    </ul>
-  </section>
+  <section id="tabela"> <!--197-->
+    <h3>🧩 Tabela Periódica</h3> <!--198-->
+    <p> <!--199-->
+      A Tabela Periódica organiza os elementos químicos por número atômico e propriedades. <!--200-->
+      É um mapa do universo químico, que nos permite entender como os átomos se combinam, <!--201-->
+      como reagem e como formam tudo ao nosso redor. Cada família tem cores, tendências <!--202-->
+      e características únicas que fazem da química uma ciência viva e mágica. <!--203-->
+    </p> <!--204-->
+    <ul> <!--205-->
+      <li><a href="https://ptable.com" target="_blank">Tabela Periódica Interativa</a></li> <!--206-->
+      <li><a href="#">Famílias Químicas</a></li> <!--207-->
+      <li><a href="#">Propriedades Periódicas</a></li> <!--208-->
+      <li><a href="#">Estados da Matéria</a></li> <!--209-->
+      <li><a href="#">História dos Elementos</a></li> <!--210-->
+    </ul> <!--211-->
+  </section> <!--212-->
 
-  <section id="experimentos">
-    <h3>🔬 Experimentos Químicos</h3>
-    <p>
-      Aprenda com a prática! Veja reações e fenômenos que mostram como a química está viva.
-    </p>
-    <ul>
-      <li><strong>Vulcão de Bicarbonato:</strong> Reação entre vinagre e bicarbonato gerando CO₂.</li>
-      <li><strong>Indicador Natural:</strong> O suco de repolho roxo muda de cor com ácidos e bases.</li>
-      <li><strong>Lâmpada de Lava:</strong> Misture óleo, água e efervescentes — pura diversão!</li>
-      <li><a href="https://manualdaquimica.uol.com.br/experiencias" target="_blank">Mais Experimentos</a></li>
-    </ul>
-  </section>
+  <section id="experimentos"> <!--213-->
+    <h3>🔬 Experimentos Químicos</h3> <!--214-->
+    <p> <!--
+251-->      Os experimentos são janelas para o mundo microscópico da Química, onde <!--252-->
+252-->      substâncias interagem, mudam de cor, liberam gases e transformam-se diante dos <!--253-->
+253-->      olhos curiosos. Aqui apresentamos algumas experiências seguras que você pode <!--254-->
+254-->      observar ou simular digitalmente, despertando o senso de descoberta e maravilha. <!--255-->
+255-->    </p> <!--256-->
+256-->    <ul> <!--257-->
+257-->      <li><a href="#">Reação do Vinagre com Bicarbonato</a></li> <!--258-->
+258-->      <li><a href="#">Cristalização de Sal</a></li> <!--259-->
+259-->      <li><a href="#">Mudança de Cor com Indicadores</a></li> <!--260-->
+260-->      <li><a href="#">Experimentos de Eletrólise</a></li> <!--261-->
+261-->    </ul> <!--262-->
+262-->  </section> <!--263-->
 
-  <section id="curiosidades">
-    <h3>💡 Curiosidades Químicas</h3>
-    <p>
-      A Química está presente em tudo — do sabor dos alimentos à tela do seu celular.
-    </p>
-    <ul>
-      <li>💎 O diamante e o grafite são feitos apenas de carbono!</li>
-      <li>☁️ O cheiro da chuva vem de compostos chamados geosmina.</li>
-      <li>🔥 O fogo é uma reação química chamada combustão.</li>
-      <li><a href="https://brasilescola.uol.com.br/quimica" target="_blank">Aprenda mais no Brasil Escola</a></li>
-    </ul>
-  </section>
+263-->  <section id="curiosidades"> <!--264-->
+264-->    <h3>💡 Curiosidades da Química</h3> <!--265-->
+265-->    <p> <!--266-->
+266-->      A Química está em toda parte: no ar que respiramos, na água que bebemos, <!--267-->
+267-->      na comida que comemos e até nos sonhos que sonhamos. Pequenos átomos se <!--268-->
+268-->      combinam em complexas moléculas, criando cores, sabores e cheiros que transformam <!--269-->
+269-->      a realidade cotidiana em um espetáculo invisível aos olhos comuns. <!--270-->
+270-->    </p> <!--271-->
+271-->    <ul> <!--272-->
+272-->      <li><a href="#">Moléculas que mudam de cor</a></li> <!--273-->
+273-->      <li><a href="#">Reações luminosas (Quimioluminescência)</a></li> <!--274-->
+274-->      <li><a href="#">Elementos raros e suas aplicações</a></li> <!--275-->
+275-->      <li><a href="#">Curiosidades históricas da Química</a></li> <!--276-->
+276-->    </ul> <!--277-->
+277-->  </section> <!--278-->
 
-  <section id="materiais">
-    <h3>⚗️ Compostos e Materiais</h3>
-    <p>
-      Materiais moldam o mundo moderno: metais, cerâmicas, plásticos, ligas e compostos avançados.  
-      A química dos materiais define a tecnologia e o progresso humano.
-    </p>
-    <ul>
-      <li><strong>Metais:</strong> bons condutores de eletricidade.</li>
-      <li><strong>Polímeros:</strong> usados em plásticos e borrachas.</li>
-      <li><strong>Cerâmicas:</strong> resistentes ao calor.</li>
-      <li><strong>Nanomateriais:</strong> estruturas em escala atômica com propriedades incríveis.</li>
-    </ul>
-  </section>
+278-->  <section id="materiais"> <!--279-->
+279-->    <h3>🧪 Compostos e Materiais</h3> <!--280-->
+280-->    <p> <!--281-->
+281-->      A Química cria, transforma e otimiza materiais. Do vidro aos polímeros, <!--282-->
+282-->      dos medicamentos às tintas, cada composto é fruto de uma reação controlada <!--283-->
+283-->      e planejada, permitindo inovação e tecnologia em todas as áreas da vida. <!--284-->
+284-->    </p> <!--285-->
+285-->    <ul> <!--286-->
+286-->      <li><a href="#">Plásticos e Polímeros</a></li> <!--287-->
+287-->      <li><a href="#">Cerâmicas e Vidros</a></li> <!--288-->
+288-->      <li><a href="#">Medicamentos Químicos</a></li> <!--289-->
+289-->      <li><a href="#">Tintas e Pigmentos</a></li> <!--290-->
+290-->      <li><a href="#">Materiais Nanoestruturados</a></li> <!--291-->
+291-->    </ul> <!--292-->
+292-->  </section> <!--293-->
 
-  <section id="historia">
-    <h3>📜 História da Química</h3>
-    <p>
-      Da alquimia antiga à ciência moderna, a Química evoluiu para explicar o mundo.  
-      Antigos alquimistas buscavam transformar metais em ouro, sem saber que estavam abrindo caminho
-      para a Química moderna.
-    </p>
-    <ul>
-      <li><strong>Lavoisier:</strong> Fundador da Química moderna (lei da conservação da massa).</li>
-      <li><strong>Mendeleev:</strong> Criador da Tabela Periódica.</li>
-      <li><strong>Marie Curie:</strong> Descobriu o rádio e o polônio.</li>
-      <li><a href="https://pt.wikipedia.org/wiki/Hist%C3%B3ria_da_qu%C3%ADmica" target="_blank">Mais sobre a História da Química</a></li>
-    </ul>
-  </section>
+293-->  <section id="historia"> <!--294-->
+294-->    <h3>📜 História da Química</h3> <!--295-->
+295-->    <p> <!--296-->
+296-->      Desde os alquimistas até os modernos laboratórios, a Química evoluiu <!--297-->
+297-->      transformando o mundo. Cada descoberta, cada reação, cada elemento isolado <!--298-->
+298-->      abriu caminho para avanços científicos, médicos e tecnológicos que moldaram <!--299-->
+299-->      a civilização. <!--300-->
+300-->    </p> <!--301-->
+301-->    <ul> <!--302-->
+302-->      <li><a href="#">Alquimia e pré-química</a></li> <!--303-->
+303-->      <li><a href="#">Descoberta de elementos químicos</a></li> <!--304-->
+304-->      <li><a href="#">Revolução Industrial e química aplicada</a></li> <!--305-->
+305-->      <li><a href="#">Química moderna e nanotecnologia</a></li> <!--306-->
+306-->    </ul> <!--307-->
+307-->  </section> <!--308-->
 
-  <section id="contato">
-    <h3>📫 Contato</h3>
-    <p>
-      Dúvidas, sugestões ou curiosidades?  
-      Envie um e-mail para <a href="mailto:contato@universodaquimica.com">contato@universodaquimica.com</a>
-    </p>
-  </section>
+308-->  <section id="reacoes"> <!--309-->
+309-->    <h3>⚡ Reações Químicas Fascinantes</h3> <!--310-->
+310-->    <p> <!--311-->
+311-->      As reações químicas são espetáculos invisíveis que moldam o universo. <!--312-->
+312-->      Elas podem liberar energia, criar cores, formar gases ou precipitados, <!--313-->
+313-->      e são fundamentais para a vida. Entender como reagir substâncias é entender <!--314-->
+314-->      o próprio tecido do cosmos. <!--315-->
+315-->    </p> <!--316-->
+316-->    <ul> <!--317-->
+317-->      <li><a href="#">Oxidação e Redução</a></li> <!--318-->
+318-->      <li><a href="#">Reações Ácido-Base</a></li> <!--319-->
+319-->      <li><a href="#">Reações de Precipitação</a></li> <!--320-->
+320-->      <li><a href="#">Polimerização</a></li> <!--321-->
+321-->      <li><a href="#">Reações Energéticas</a></li> <!--322-->
+322-->    </ul> <!--323-->
+323-->  </section> <!--324-->
 
-  <footer>
-    &copy; 2025 Universo da Química — Desenvolvido com 💙 e curiosidade científica.
-    <br><a href="#inicio">Voltar ao topo ↑</a>
-  </footer>
+324-->  <section id="energia"> <!--325-->
+325-->    <h3>🔥 Energia na Química</h3> <!--326-->
+326-->    <p> <!--327-->
+327-->      Toda reação química envolve transferência de energia. A energia pode <!--328-->
+328-->      ser liberada ou absorvida, transformando a matéria e produzindo calor, <!--329-->
+329-->      luz ou trabalho. Essa dança energética é o coração pulsante de toda <!--330-->
+330-->      atividade química. <!--331-->
+331-->    </p> <!--332-->
+332-->    <ul> <!--333-->
+333-->      <li><a href="#">Reações Exotérmicas</a></li> <!--334-->
+334-->      <li><a href="#">Reações Endotérmicas</a></li> <!--335-->
+335-->      <li><a href="#">Fotossíntese e energia solar</a></li> <!--336-->
+336-->      <li><a href="#">Baterias e armazenamento químico</a></li> <!--337-->
+337-->      <li><a href="#">Energia nuclear e radioatividade</a></li> <!--338-->
+338-->    </ul> <!--339-->
+339-->  </section> <!--340-->
 
-  <script>
-    const canvas = document.getElementById('particles');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
+340-->  <section id="biochem"> <!--341-->
+341-->    <h3>🧬 Bioquímica</h3> <!--342-->
+342-->    <p> <!--343-->
+343-->      A Bioquímica conecta a Química à vida. Moléculas como proteínas, carboidratos <!--344-->
+344-->      e ácidos nucleicos são blocos fundamentais da existência. Reações bioquímicas <!--345-->
+345-->      determinam crescimento, energia e reprodução, mostrando que química e vida <!--346-->
+346-->      são indissociáveis. <!--347-->
+347-->    </p> <!--348-->
+348-->    <ul> <!--349-->
+349-->      <li><a href="#">Enzimas e catalisadores biológicos</a></li> <!--350-->
+350-->      <li><a href="#">Metabolismo e reações celulares</a></li> <!--351-->
+351-->      <li><a href="#">Ácidos nucleicos: DNA e RNA</a></li> <!--352-->
+352-->      <li><a href="#">Proteínas e estrutura molecular</a></li> <!--353-->
+353-->      <li><a href="#">Vitaminas e coenzimas</a></li> <!--354-->
+354-->    </ul> <!--355-->
+355-->  </section> <!--356-->
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+356-->  <section id="materiais-2"> <!--357-->
+357-->    <h3>🌐 Materiais Avançados</h3> <!--358-->
+358-->    <p> <!--359-->
+359-->      Novas tecnologias dependem de materiais químicos avançados, como nanotubos, <!--360-->
+360-->      grafeno e ligas metálicas especiais. Esses materiais permitem eletrônicos <!--361-->
+361-->      mais eficientes, energias renováveis e inovações médicas, expandindo <!--362-->
+362-->      fronteiras do conhecimento. <!--363-->
+363-->    </p> <!--364-->
+364-->    <ul> <!--365-->
+365-->      <li><a href="#">Nanotecnologia</a></li> <!--366-->
+366-->      <li><a href="#">Grafeno e materiais 2D</a></li> <!--367-->
+367-->      <li><a href="#">Ligas metálicas especiais</a></li> <!--368-->
+368-->      <li><a href="#">Materiais inteligentes</a></li> <!--369-->
+369-->      <li><a href="#">Biomateriais</a></li> <!--370-->
+370-->    </ul> <!--371-->
+371-->  </section> <!--372-->
 
-    class Particle {
-      constructor(x, y, size, speedX, speedY) {
-        this.x = x;
-        this.y = y;
-        this.size = size;
-        this.speedX = speedX;
-        this.speedY = speedY;
-      }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-      }
-      draw() {
-        ctx.fillStyle = "rgba(0, 224, 255, 0.8)";
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
+372-->  <section id="aplicacoes"> <!--373-->
+373-->    <h3>💎 Aplicações da Química</h3> <!--374-->
+374-->    <p> <!--375-->
+375-->      Desde cosméticos até fármacos, da indústria até a agricultura, a Química <!--376-->
+376-->      transforma ideias em realidade. Cada reação aplicada cria soluções para <!--377-->
+377-->      desafios humanos, conectando teoria e prática de forma extraordinária. <!--378-->
+378-->    </p> <!--379-->
+379-->    <ul> <!--380-->
+380-->      <li><a href="#">Indústria farmacêutica</a></li> <!--381-->
+381-->      <li><a href="#">Cosméticos e fragrâncias</a></li> <!--382-->
+382-->      <li><a href="#">Agricultura e fertilizantes</a></li> <!--383-->
+383-->      <li><a href="#">Tratamento de água</a></li> <!--384-->
+384-->      <li><a href="#">Energia e combustíveis</a></li> <!--385-->
+385-->    </ul> <!--386-->
+386-->  </section> <!--387-->
 
-    function init() {
-      particles = [];
-      for (let i = 0; i < 130; i++) {
-        let size = Math.random() * 3 + 1;
-        let x = Math.random() * canvas.width;
-        let y = Math.random() * canvas.height;
-        let speedX = (Math.random() - 0.5) * 1.5;
-        let speedY = (Math.random() - 0.5) * 1.5;
-        particles.push(new Particle(x, y, size, speedX, speedY));
-      }
-    }
+387-->  <script> <!--388-->
+388-->    const canvas = document.getElementById('particles'); <!--389-->
+389-->    const ctx = canvas.getContext('2d'); <!--390-->
+390-->    canvas.width = window.innerWidth; <!--391-->
+391-->    canvas.height = window.innerHeight; <!--392-->
 
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let p of particles) {
-        p.update();
-        p.draw();
-      }
-      requestAnimationFrame(animate);
-    }
+392-->    const particlesArray = []; <!--393-->
 
-    init();
-    animate();
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      init();
-    });
-  </script>
-</body>
-</html>
+394-->    class Particle { <!--394-->
+395-->      constructor(){ <!--395-->
+396-->        this.x = Math.random() * canvas.width; <!--396-->
+397-->        this.y = Math.random() * canvas.height; <!--397-->
+398-->        this.size = Math.random() * 3 + 1; <!--398-->
+399-->        this.speedX = Math.random() * 1 - 0.5; <!--399-->
+400-->        this.speedY = Math.random() * 1 - 0.5; <!--400-->
+401-->        this.color = `hsl(${Math.random()*360},100%,50%)`; <!--401-->
+402-->      } <!--402-->
+403-->      update(){ <!--403-->
+404-->        this.x += this.speedX; <!--404-->
+405-->        this.y += this.speedY; <!--405-->
+406-->        if(this.x < 0 || this.x > canvas.width) this.speedX *= -1; <!--406-->
+407-->        if(this.y < 0 || this.y > canvas.height) this.speedY *= -1; <!--407-->
+408-->      } <!--408-->
+409-->      draw(){ <!--409-->
+410-->        ctx.fillStyle = this.color; <!--410-->
+411-->        ctx.beginPath(); <!--411-->
+412-->        ctx.arc(this.x,this.y,this.size,0,Math.PI*2); <!--412-->
+413-->        ctx.fill(); <!--413-->
+414-->      } <!--414-->
+415-->    } <!--415-->
 
+416-->    function initParticles(){ <!--416-->
+417-->      for(let i=0;i<150;i++){ <!--417-->
+418-->        particlesArray.push(new Particle()); <!--418-->
+419-->      } <!--419-->
+420-->    } <!--420-->
+
+421-->    function animateParticles(){ <!--421-->
+422-->      ctx.clearRect(0,0,canvas.width,canvas.height); <!--422-->
+423-->      particlesArray.forEach(p => { <!--423-->
+424-->        p.update(); <!--424-->
+425-->        p.draw(); <!--425-->
+426-->      }); <!--426-->
+427-->      requestAnimationFrame(animateParticles); <!--427-->
+428-->    } <!--428-->
+
+429-->    window.addEventListener('resize',()=>{ <!--429-->
+430-->      canvas.width = window.innerWidth; <!--430-->
+431-->      canvas.height = window.innerHeight; <!--431-->
+432-->    }); <!--432-->
+
+433-->    initParticles(); <!--433-->
+434-->    animateParticles(); <!--434-->
+435-->  </script> <!--435-->
+501-->  <section id="sustentabilidade"> <!--502-->
+502-->    <h3>🌱 Química e Sustentabilidade</h3> <!--503-->
+503-->    <p> <!--504-->
+504-->      A química também pode ajudar a preservar o planeta. Através de <!--505-->
+505-->      tecnologias verdes, reciclagem de materiais e desenvolvimento de <!--506-->
+506-->      energias limpas, é possível reduzir impactos ambientais e criar <!--507-->
+507-->      soluções sustentáveis para o futuro. <!--508-->
+508-->    </p> <!--509-->
+509-->    <ul> <!--510-->
+510-->      <li><a href="#">Química Verde</a></li> <!--511-->
+511-->      <li><a href="#">Reciclagem e reaproveitamento</a></li> <!--512-->
+512-->      <li><a href="#">Energia renovável</a></li> <!--513-->
+513-->      <li><a href="#">Redução de poluentes</a></li> <!--514-->
+514-->      <li><a href="#">Materiais biodegradáveis</a></li> <!--515-->
+515-->    </ul> <!--516-->
+516-->  </section> <!--517-->
+
+517-->  <section id="tecnologia"> <!--518-->
+518-->    <h3>💻 Química e Tecnologia</h3> <!--519-->
+519-->    <p> <!--520-->
+520-->      A Química é essencial para a inovação tecnológica. Ela está presente <!--521-->
+521-->      em eletrônicos, baterias, semicondutores, displays e muito mais. <!--522-->
+522-->      Cada avanço tecnológico depende do entendimento químico e do <!--523-->
+523-->      desenvolvimento de novos materiais. <!--524-->
+524-->    </p> <!--525-->
+525-->    <ul> <!--526-->
+526-->      <li><a href="#">Eletrônicos e semicondutores</a></li> <!--527-->
+527-->      <li><a href="#">Baterias avançadas</a></li> <!--528-->
+528-->      <li><a href="#">Displays e telas</a></li> <!--529-->
+529-->      <li><a href="#">Nanomateriais para tecnologia</a></li> <!--530-->
+530-->      <li><a href="#">Sensores químicos</a></li> <!--531-->
+531-->    </ul> <!--532-->
+532-->  </section> <!--533-->
+
+533-->  <section id="educacao"> <!--534-->
+534-->    <h3>📚 Educação Química</h3> <!--535-->
+535-->    <p> <!--536-->
+536-->      Aprender Química pode ser divertido e inspirador. Experimentos <!--537-->
+537-->      simples, jogos educativos e simulações digitais ajudam a compreender <!--538-->
+538-->      conceitos complexos e a despertar a curiosidade científica. <!--539-->
+539-->    </p> <!--540-->
+540-->    <ul> <!--541-->
+541-->      <li><a href="#">Experimentos caseiros</a></li> <!--542-->
+542-->      <li><a href="#">Simulações online</a></li> <!--543-->
+543-->      <li><a href="#">Química para crianças</a></li> <!--544-->
+544-->      <li><a href="#">Jogos e quizzes</a></li> <!--545-->
+545-->      <li><a href="#">Recursos educacionais</a></li> <!--546-->
+546-->    </ul> <!--547-->
+547-->  </section> <!--548-->
+
+548-->  <section id="arte"> <!--549-->
+549-->    <h3>🎨 Química e Arte</h3> <!--550-->
+550-->    <p> <!--551-->
+551-->      A Química também inspira arte. Pigmentos, tintas, reações de cores e <!--552-->
+552-->      materiais inovadores permitem que artistas criem obras vibrantes e <!--553-->
+553-->      surpreendentes. A ciência e a arte se encontram em cores e formas. <!--554-->
+554-->    </p> <!--555-->
+555-->    <ul> <!--556-->
+556-->      <li><a href="#">Pigmentos históricos</a></li> <!--557-->
+557-->      <li><a href="#">Técnicas de pintura química</a></li> <!--558-->
+558-->      <li><a href="#">Arte com cristais</a></li> <!--559-->
+559-->      <li><a href="#">Esculturas químicas</a></li> <!--560-->
+560-->      <li><a href="#">Fotografia química</a></li> <!--561-->
+561-->    </ul> <!--562-->
+562-->  </section> <!--563-->
+
+563-->  <section id="seguranca"> <!--564-->
+564-->    <h3>🛡️ Segurança na Química</h3> <!--565-->
+565-->    <p> <!--566-->
+566-->      Trabalhar com química exige cuidado e responsabilidade. O uso correto <!--567-->
+567-->      de equipamentos de proteção, manuseio adequado de substâncias e <!--568-->
+568-->      conhecimento das reações evita acidentes e garante segurança em <!--569-->
+569-->      laboratórios e indústrias. <!--570-->
+570-->    </p> <!--571-->
+571-->    <ul> <!--572-->
+572-->      <li><a href="#">Equipamentos de proteção</a></li> <!--573-->
+573-->      <li><a href="#">Manuseio de ácidos e bases</a></li> <!--574-->
+574-->      <li><a href="#">Riscos químicos</a></li> <!--575-->
+575-->      <li><a href="#">Protocolos de laboratório</a></li> <!--576-->
+576-->      <li><a href="#">Primeiros socorros</a></li> <!--577-->
+577-->    </ul> <!--578-->
+578-->  </section> <!--579-->
+
+579-->  <section id="futuro"> <!--580-->
+580-->    <h3>🚀 Futuro da Química</h3> <!--581-->
+581-->    <p> <!--582-->
+582-->      O futuro da Química está cheio de possibilidades: inteligência artificial <!--583-->
+583-->      para prever reações, materiais inteligentes, bioengenharia, energia <!--584-->
+584-->      sustentável e novos medicamentos que podem transformar a vida humana. <!--585-->
+585-->    </p> <!--586-->
+586-->    <ul> <!--587-->
+587-->      <li><a href="#">Química computacional</a></li> <!--588-->
+588-->      <li><a href="#">Materiais do futuro</a></li> <!--589-->
+589-->      <li><a href="#">Biotecnologia</a></li> <!--590-->
+590-->      <li><a href="#">Energia sustentável</a></li> <!--591-->
+591-->      <li><a href="#">Medicina avançada</a></li> <!--592-->
+592-->    </ul> <!--593-->
+593-->  </section> <!--594-->
+
+594-->  <section id="experimentos"> <!--595-->
+595-->    <h3>🔬 Experimentos Interativos</h3> <!--596-->
+596-->    <p> <!--597-->
+597-->      Experimentos virtuais permitem explorar a química sem risco. Simule <!--598-->
+598-->      reações, observe mudanças de cor, formação de gases e precipitados <!--599-->
+599-->      diretamente no seu navegador. <!--600-->
+600-->    </p> <!--601-->
+601-->    <ul> <!--602-->
+602-->      <li><a href="#">Simulador de Reações Ácido-Base</a></li> <!--603-->
+603-->      <li><a href="#">Reações de Oxidação</a></li> <!--604-->
+604-->      <li><a href="#">Formação de Cristais</a></li> <!--605-->
+605-->      <li><a href="#">Reações Energéticas</a></li> <!--606-->
+606-->      <li><a href="#">Experimentos de Eletrólise</a></li> <!--607-->
+607-->    </ul> <!--608-->
+608-->  </section> <!--609-->
+
+609-->  <section id="quiz"> <!--610-->
+610-->    <h3>❓ Quiz de Química</h3> <!--611-->
+611-->    <p> <!--612-->
+612-->      Teste seus conhecimentos com quizzes sobre elementos, reações, <!--613-->
+613-->      compostos e aplicações químicas. Uma maneira divertida de aprender <!--614-->
+614-->      e fixar conceitos. <!--615-->
+615-->    </p> <!--616-->
+616-->    <ul> <!--617-->
+617-->      <li><a href="#">Quiz de Elementos</a></li> <!--618-->
+618-->      <li><a href="#">Quiz de Reações</a></li> <!--619-->
+619-->      <li><a href="#">Quiz de Compostos</a></li> <!--620-->
+620-->      <li><a href="#">Quiz de História da Química</a></li> <!--621-->
+621-->      <li><a href="#">Quiz de Bioquímica</a></li> <!--622-->
+622-->    </ul> <!--623-->
+623-->  </section> <!--624-->
+
+624-->  <section id="noticias"> <!--625-->
+625-->    <h3>📰 Notícias da Química</h3> <!--626-->
+626-->    <p> <!--627-->
+627-->      Descubra as últimas descobertas, pesquisas e inovações no mundo <!--628-->
+628-->      da química. Novos materiais, reações inéditas e avanços científicos <!--629-->
+629-->      são divulgados constantemente para manter você atualizado. <!--630-->
+630-->    </p> <!--631-->
+631-->    <ul> <!--632-->
+632-->      <li><a href="#">Descobertas recentes</a></li> <!--633-->
+633-->      <li><a href="#">Inovações em laboratórios</a></li> <!--634-->
+634-->      <li><a href="#">Novos materiais</a></li> <!--635-->
+635-->      <li><a href="#">Prêmios e conquistas</a></li> <!--636-->
+636-->      <li><a href="#">Eventos científicos</a></li> <!--637-->
+637-->    </ul> <!--638-->
+638-->  </section> <!--639-->
+751-->  <section id="historia"> <!--752-->
+752-->    <h3>📜 História da Química</h3> <!--753-->
+753-->    <p> <!--754-->
+754-->      A história da química revela a evolução do conhecimento humano sobre <!--755-->
+755-->      substâncias e reações. Dos alquimistas às modernas indústrias, cada <!--756-->
+756-->      descoberta moldou o mundo como conhecemos hoje. <!--757-->
+757-->    </p> <!--758-->
+758-->    <ul> <!--759-->
+759-->      <li><a href="#">Alquimia e primeiras descobertas</a></li> <!--760-->
+760-->      <li><a href="#">Química no século XIX</a></li> <!--761-->
+761-->      <li><a href="#">Avanços no século XX</a></li> <!--762-->
+762-->      <li><a href="#">Indústria química moderna</a></li> <!--763-->
+763-->      <li><a href="#">Pioneiros da Química</a></li> <!--764-->
+764-->    </ul> <!--765-->
+765-->  </section> <!--766-->
+
+766-->  <section id="curiosidades"> <!--767-->
+767-->    <h3>🤯 Curiosidades Químicas</h3> <!--768-->
+768-->    <p> <!--769-->
+769-->      A Química está cheia de fatos surpreendentes. Por exemplo, sabia que <!--770-->
+770-->      existem substâncias que brilham no escuro ou que alguns gases são mais <!--771-->
+771-->      pesados que o ar? Explorar curiosidades torna o aprendizado divertido! <!--772-->
+772-->    </p> <!--773-->
+773-->    <ul> <!--774-->
+774-->      <li><a href="#">Elementos curiosos</a></li> <!--775-->
+775-->      <li><a href="#">Reações inesperadas</a></li> <!--776-->
+776-->      <li><a href="#">Experimentos incríveis</a></li> <!--777-->
+777-->      <li><a href="#">Fatos históricos</a></li> <!--778-->
+778-->      <li><a href="#">Curiosidades do cotidiano</a></li> <!--779-->
+779-->    </ul> <!--780-->
+780-->  </section> <!--781-->
+
+781-->  <section id="materiais"> <!--782-->
+782-->    <h3>🧪 Materiais Químicos</h3> <!--783-->
+783-->    <p> <!--784-->
+784-->      Materiais químicos são essenciais em diversas aplicações, desde <!--785-->
+785-->      construção civil até nanotecnologia. Conhecer suas propriedades é <!--786-->
+786-->      fundamental para inovação e segurança. <!--787-->
+787-->    </p> <!--788-->
+788-->    <ul> <!--789-->
+789-->      <li><a href="#">Plásticos e polímeros</a></li> <!--790-->
+790-->      <li><a href="#">Metais e ligas</a></li> <!--791-->
+791-->      <li><a href="#">Cerâmicas e vidros</a></li> <!--792-->
+792-->      <li><a href="#">Nanomateriais</a></li> <!--793-->
+793-->      <li><a href="#">Materiais inteligentes</a></li> <!--794-->
+794-->    </ul> <!--795-->
+795-->  </section> <!--796-->
+
+796-->  <section id="energia"> <!--797-->
+797-->    <h3>⚡ Química e Energia</h3> <!--798-->
+798-->    <p> <!--799-->
+799-->      A Química permite produzir, armazenar e transformar energia de formas <!--800-->
+800-->      mais eficientes. Baterias, células solares e combustíveis alternativos <!--801-->
+801-->      são produtos de pesquisas químicas avançadas. <!--802-->
+802-->    </p> <!--803-->
+803-->    <ul> <!--804-->
+804-->      <li><a href="#">Baterias de íon-lítio</a></li> <!--805-->
+805-->      <li><a href="#">Células solares</a></li> <!--806-->
+806-->      <li><a href="#">Combustíveis alternativos</a></li> <!--807-->
+807-->      <li><a href="#">Hidrogênio como energia</a></li> <!--808-->
+808-->      <li><a href="#">Armazenamento energético</a></li> <!--809-->
+809-->    </ul> <!--810-->
+810-->  </section> <!--811-->
+
+811-->  <section id="espaco"> <!--812-->
+812-->    <h3>🌌 Química no Espaço</h3> <!--813-->
+813-->    <p> <!--814-->
+814-->      A química não está limitada à Terra. Ela é crucial para entender <!--815-->
+815-->      planetas, estrelas, atmosferas e até a possibilidade de vida em outros <!--816-->
+816-->      mundos. <!--817-->
+817-->    </p> <!--818-->
+818-->    <ul> <!--819-->
+819-->      <li><a href="#">Astroquímica</a></li> <!--820-->
+820-->      <li><a href="#">Compostos em meteoritos</a></li> <!--821-->
+821-->      <li><a href="#">Reações em condições extremas</a></li> <!--822-->
+822-->      <li><a href="#">Química de planetas</a></li> <!--823-->
+823-->      <li><a href="#">Exploração espacial</a></li> <!--824-->
+824-->    </ul> <!--825-->
+825-->  </section> <!--826-->
+
+826-->  <section id="teoria"> <!--827-->
+827-->    <h3>📐 Teoria Química</h3> <!--828-->
+828-->    <p> <!--829-->
+829-->      Teorias químicas explicam como os átomos interagem, como se formam <!--830-->
+830-->      moléculas e como ocorre a energia em reações. São a base para todas <!--831-->
+831-->      as aplicações práticas. <!--832-->
+832-->    </p> <!--833-->
+833-->    <ul> <!--834-->
+834-->      <li><a href="#">Teoria Atômica</a></li> <!--835-->
+835-->      <li><a href="#">Química Quântica</a></li> <!--836-->
+836-->      <li><a href="#">Termodinâmica química</a></li> <!--837-->
+837-->      <li><a href="#">Cinética química</a></li> <!--838-->
+838-->      <li><a href="#">Equilíbrios químicos</a></li> <!--839-->
+839-->    </ul> <!--840-->
+840-->  </section> <!--841-->
+
+841-->  <section id="bioquimica"> <!--842-->
+842-->    <h3>🧬 Bioquímica</h3> <!--843-->
+843-->    <p> <!--844-->
+844-->      A bioquímica estuda a química da vida. Enzimas, proteínas, ácidos <!--845-->
+845-->      nucleicos e metabólitos são essenciais para compreender organismos <!--846-->
+846-->      e desenvolver tratamentos médicos. <!--847-->
+847-->    </p> <!--848-->
+848-->    <ul> <!--849-->
+849-->      <li><a href="#">Proteínas e enzimas</a></li> <!--850-->
+850-->      <li><a href="#">Ácidos nucleicos</a></li> <!--851-->
+851-->      <li><a href="#">Metabolismo</a></li> <!--852-->
+852-->      <li><a href="#">Sinalização celular</a></li> <!--853-->
+853-->      <li><a href="#">Biotecnologia</a></li> <!--854-->
+854-->    </ul> <!--855-->
+855-->  </section> <!--856-->
+
+856-->  <section id="projetos"> <!--857-->
+857-->    <h3>🔧 Projetos Químicos</h3> <!--858-->
+858-->    <p> <!--859-->
+859-->      Projetos químicos permitem aplicar conhecimento em situações reais. <!--860-->
+860-->      Desde laboratórios escolares até indústrias inovadoras, a química está <!--861-->
+861-->      em toda parte. <!--862-->
+862-->    </p> <!--863-->
+863-->    <ul> <!--864-->
+864-->      <li><a href="#">Projetos educativos</a></li> <!--865-->
+865-->      <li><a href="#">Projetos de laboratório</a></li> <!--866-->
+866-->      <li><a href="#">Projetos industriais</a></li> <!--867-->
+867-->      <li><a href="#">Startups químicas</a></li> <!--868-->
+868-->      <li><a href="#">Pesquisa universitária</a></li> <!--869-->
+869-->    </ul> <!--870-->
+870-->  </section> <!--871-->
+
+871-->  <section id="galeria"> <!--872-->
+872-->    <h3>🖼️ Galeria de Química</h3> <!--873-->
+873-->    <p> <!--874-->
+874-->      Veja imagens de experimentos, cristais, reações coloridas e estruturas <!--875-->
+875-->      moleculares. Uma forma visual de aprender e se inspirar com a ciência. <!--876-->
+876-->    </p> <!--877-->
+877-->    <ul> <!--878-->
+878-->      <li><a href="#">Cristais e precipitados</a></li> <!--879-->
+879-->      <li><a href="#">Reações coloridas</a></li> <!--880-->
+880-->      <li><a href="#">Moléculas famosas</a></li> <!--881-->
+881-->      <li><a href="#">Laboratórios históricos</a></li> <!--882-->
+882-->      <li><a href="#">Arte química</a></li> <!--883-->
+883-->    </ul> <!--884-->
+884-->  </section> <!--885-->
+
+885-->  <section id="experts"> <!--886-->
+886-->    <h3>👩‍🔬 Químicos Famosos</h3> <!--887-->
+887-->    <p> <!--888-->
+888-->      Conheça cientistas que transformaram a química. De Marie Curie a Linus <!--889-->
+889-->      Pauling, seus trabalhos são fundamentais para ciência moderna. <!--890-->
+890-->    </p> <!--891-->
+891-->    <ul> <!--892-->
+892-->      <li><a href="#">Marie Curie</a></li> <!--893-->
+893-->      <li><a href="#">Dmitri Mendeleev</a></li> <!--894-->
+894-->      <li><a href="#">Linus Pauling</a></li> <!--895-->
+895-->      <li><a href="#">Robert Hooke</a></li> <!--896-->
+896-->      <li><a href="#">Gilbert Lewis</a></li> <!--897-->
+897-->    </ul> <!--898-->
+898-->  </section> <!--899-->
+
+899-->  <section id="contato"> <!--900-->
+900-->    <h3>✉️ Contato</h3> <!--901-->
+901-->    <p> <!--902-->
+902-->      Entre em contato para sugestões, perguntas ou colaboração em projetos <!--903-->
+903-->      químicos. A comunidade científica valoriza a troca de conhecimento. <!--904-->
+904-->    </p> <!--905-->
+905-->    <ul> <!--906-->
+906-->      <li><a href="#">Envie um e-mail</a></li> <!--907-->
+907-->      <li><a href="#">Redes sociais</a></li> <!--908-->
+908-->      <li><a href="#">Participação em fóruns</a></li> <!--909-->
+909-->      <li><a href="#">Newsletter</a></li> <!--910-->
+910-->      <li><a href="#">Parcerias educacionais</a></li> <!--911-->
+911-->    </ul> <!--912-->
+912-->  </section> <!--913-->
+
+913-->  <footer> <!--914-->
+914-->    <p> <!--915-->
+915-->      © 2025 Mundo da Química. Todos os direitos reservados. <!--916-->
+916-->      Explore, aprenda e se inspire! <!--917-->
+917-->    </p> <!--918-->
+918-->  </footer> <!--919-->
+
+919-->  <style> <!--920-->
+920-->    body { <!--921-->
+921-->      font-family: Arial, sans-serif; <!--922-->
+922-->      background: linear-gradient(to right, #f5f7fa, #c3cfe2); <!--923-->
+923-->      margin: 0; <!--924-->
+924-->      padding: 0; <!--925-->
+925-->    } <!--926-->
+926-->    header { <!--927-->
+927-->      background: #283e51; <!--928-->
+928-->      color: white; <!--929-->
+929-->      text-align: center; <!--930-->
+930-->      padding: 40px 20px; <!--931-->
+931-->      animation: fadeIn 3s ease-in; <!--932-->
+932-->    } <!--933-->
+933-->    nav ul { <!--934-->
+934-->      list-style: none; <!--935-->
+935-->      display: flex; <!--936-->
+936-->      justify-content: center; <!--937-->
+937-->      flex-wrap: wrap; <!--938-->
+938-->      padding: 0; <!--939-->
+939-->    } <!--940-->
+940-->    nav ul li { <!--941-->
+941-->      margin: 10px 15px; <!--942-->
+942-->    } <!--943-->
+943-->    nav ul li a { <!--944-->
+944-->      text-decoration: none; <!--945-->
+945-->      color: #283e51; <!--946-->
+946-->      font-weight: bold; <!--947-->
+947-->      transition: 0.3s; <!--948-->
+948-->    } <!--949-->
+949-->    nav ul li a:hover { <!--950-->
+950-->      color: #ff6b6b; <!--951-->
+951-->    } <!--952-->
+952-->    section { <!--953-->
+953-->      padding: 50px 20px; <!--954-->
+954-->      border-bottom: 1px solid #ddd; <!--955-->
+955-->      animation: fadeUp 2s ease-in; <!--956-->
+956-->    } <!--957-->
+957-->    section h3 { <!--958-->
+958-->      color: #283e51; <!--959-->
+959-->      margin-bottom: 15px; <!--960-->
+960-->    } <!--961-->
+961-->    section ul { <!--962-->
+962-->      list-style: disc; <!--963-->
+963-->      margin-left: 20px; <!--964-->
+964-->    } <!--965-->
+965-->    footer { <!--966-->
+966-->      text-align: center; <!--967-->
+967-->      padding: 30px 20px; <!--968-->
+968-->      background: #283e51; <!--969-->
+969-->      color: white; <!--970-->
+970-->    } <!--971-->
+971-->    @keyframes fadeIn { <!--972-->
+972-->      from { opacity: 0; } <!--973-->
+973-->      to { opacity: 1; } <!--974-->
+974-->    } <!--975-->
+975-->    @keyframes fadeUp { <!--976-->
+976-->      from { opacity: 0; transform: translateY(50px); } <!--977-->
+977-->      to { opacity: 1; transform: translateY(0); } <!--978-->
+978-->    } <!--979-->
+979-->  </style> <!--980-->
+980-->  <script> <!--981-->
+981-->    // Exemplo simples de animação JS para destacar links <!--982-->
+982-->    const links = document.querySelectorAll("nav ul li a, section ul li a"); <!--983-->
+983-->    links.forEach(link => { <!--984-->
+984-->      link.addEventListener("mouseover", () => { <!--985-->
+985-->        link.style.color = "#ff6b6b"; <!--986-->
+986-->        link.style.transform = "scale(1.1)"; <!--987-->
+987-->      }); <!--988-->
+988-->      link.addEventListener("mouseout", () => { <!--989-->
+989-->        link.style.color = ""; <!--990-->
+990-->        link.style.transform = "scale(1)"; <!--991-->
+991-->      }); <!--992-->
+992-->    }); <!--993-->
+993-->  </script> <!--994-->
+994--> </body> <!--995-->
+995--> </html> <!--996-->
+996--> <!--997-->
+997--> <!--998-->
+998--> <!--999-->
+999--> <!--1000-->
 
 
