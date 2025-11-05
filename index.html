@@ -5,113 +5,187 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mundo da Química</title>
   <style>
-    /* ====== ESTILO GERAL ====== */
-    body {
+    /* === ESTILO GERAL === */
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: "Poppins", sans-serif;
-      color: #fff;
-      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
-      overflow-x: hidden;
     }
 
+    body {
+      background: radial-gradient(circle at top, #001f3f, #000814);
+      color: #fff;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* === CABEÇALHO === */
     header {
-      background: rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(5px);
-      text-align: center;
-      padding: 20px 0;
-      position: sticky;
+      width: 100%;
+      position: fixed;
       top: 0;
-      z-index: 100;
+      left: 0;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+      z-index: 1000;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
     }
 
     header h1 {
-      margin: 0;
-      font-size: 2.5em;
-      color: #00e0ff;
-      text-shadow: 0 0 15px #00e0ff;
-    }
-
-    nav {
-      margin-top: 10px;
-    }
-
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: #00e0ff;
-    }
-
-    /* ====== SEÇÃO PRINCIPAL ====== */
-    main {
-      text-align: center;
-      padding: 80px 20px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    main h2 {
-      font-size: 2em;
+      font-size: 1.8em;
       color: #00e0ff;
       text-shadow: 0 0 10px #00e0ff;
     }
 
-    main p {
-      max-width: 700px;
-      margin: 20px auto;
-      font-size: 1.2em;
-      line-height: 1.6em;
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+      position: relative;
+      transition: 0.3s;
     }
 
-    /* ====== ANIMAÇÃO DE FUNDO ====== */
-    .bubbles {
+    nav a::after {
+      content: "";
       position: absolute;
-      top: 0;
+      width: 0%;
+      height: 2px;
+      background: #00e0ff;
+      bottom: -5px;
       left: 0;
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after {
       width: 100%;
-      height: 100%;
-      overflow: hidden;
+    }
+
+    /* === SEÇÃO PRINCIPAL === */
+    main {
+      padding-top: 120px;
+      text-align: center;
+      position: relative;
+    }
+
+    main h2 {
+      font-size: 2.5em;
+      color: #00e0ff;
+      text-shadow: 0 0 15px #00e0ff;
+      margin-bottom: 20px;
+    }
+
+    main p {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.2em;
+      line-height: 1.6em;
+      color: #ccefff;
+    }
+
+    .buttons {
+      margin-top: 40px;
+    }
+
+    .buttons a {
+      display: inline-block;
+      background: #00e0ff;
+      color: #000;
+      padding: 12px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      margin: 10px;
+      font-weight: bold;
+      box-shadow: 0 0 10px #00e0ff;
+      transition: 0.3s;
+    }
+
+    .buttons a:hover {
+      background: #00b0cc;
+      box-shadow: 0 0 20px #00e0ff;
+    }
+
+    /* === ANIMAÇÃO DE MOLÉCULAS === */
+    .molecule {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 200px;
+      height: 200px;
+      transform: translate(-50%, -50%);
+      animation: spin 10s linear infinite;
       z-index: -1;
     }
 
-    .bubble {
+    .atom {
       position: absolute;
-      bottom: -100px;
-      background: rgba(0, 224, 255, 0.2);
+      width: 25px;
+      height: 25px;
       border-radius: 50%;
-      animation: rise 10s infinite ease-in;
+      background: #00e0ff;
+      box-shadow: 0 0 15px #00e0ff;
+      animation: orbit 6s linear infinite;
     }
 
-    @keyframes rise {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 0.8;
-      }
-      100% {
-        transform: translateY(-1200px) scale(1.5);
-        opacity: 0;
-      }
+    .atom:nth-child(1) { top: 0; left: 50%; animation-delay: 0s; }
+    .atom:nth-child(2) { right: 0; top: 50%; animation-delay: 2s; }
+    .atom:nth-child(3) { bottom: 0; left: 50%; animation-delay: 4s; }
+
+    @keyframes orbit {
+      from { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+      to { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
     }
 
-    /* Tamanhos e posições diferentes para as bolhas */
-    .bubble:nth-child(1) { left: 10%; width: 40px; height: 40px; animation-duration: 9s; }
-    .bubble:nth-child(2) { left: 25%; width: 20px; height: 20px; animation-duration: 7s; animation-delay: 2s; }
-    .bubble:nth-child(3) { left: 40%; width: 50px; height: 50px; animation-duration: 12s; animation-delay: 4s; }
-    .bubble:nth-child(4) { left: 60%; width: 35px; height: 35px; animation-duration: 10s; animation-delay: 6s; }
-    .bubble:nth-child(5) { left: 80%; width: 25px; height: 25px; animation-duration: 8s; animation-delay: 1s; }
+    @keyframes spin {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
 
-    /* ====== RODAPÉ ====== */
-    footer {
-      background: rgba(0, 0, 0, 0.4);
+    /* === SEÇÕES EXTRAS === */
+    section {
+      padding: 80px 20px;
       text-align: center;
-      padding: 15px 0;
-      font-size: 0.9em;
+    }
+
+    section h3 {
+      color: #00e0ff;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    section p {
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+      color: #ccefff;
+    }
+
+    /* === RODAPÉ === */
+    footer {
+      background: rgba(0, 0, 0, 0.5);
+      text-align: center;
+      padding: 20px;
       color: #aaa;
+      font-size: 0.9em;
+      margin-top: 60px;
+      border-top: 1px solid #00e0ff33;
+    }
+
+    /* === RESPONSIVIDADE === */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+      }
+      .buttons a {
+        display: block;
+        margin: 10px auto;
+        width: 200px;
+      }
     }
   </style>
 </head>
@@ -128,27 +202,48 @@
   </header>
 
   <main id="inicio">
-    <div class="bubbles">
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
+    <div class="molecule">
+      <div class="atom"></div>
+      <div class="atom"></div>
+      <div class="atom"></div>
     </div>
 
-    <h2>A ciência que transforma o mundo</h2>
+    <h2>A Ciência das Transformações!</h2>
     <p>
-      A <strong>Química</strong> estuda a composição, estrutura e transformações da matéria.  
-      Está presente em tudo — no ar que respiramos, na comida que comemos e até na tecnologia que usamos.
+      A Química é a ciência que estuda a matéria, suas propriedades, transformações e as leis que as regem.
+      Presente em tudo ao nosso redor — desde o ar que respiramos até os dispositivos eletrônicos que usamos —,
+      a Química é a base para a inovação e o futuro da humanidade.
     </p>
-    <p>
-      Explore os links acima para aprender mais sobre os elementos químicos, descobrir experimentos incríveis
-      e curiosidades fascinantes sobre o universo da química!
-    </p>
+
+    <div class="buttons">
+      <a href="#tabela">Explorar Tabela Periódica</a>
+      <a href="#experimentos">Ver Experimentos</a>
+      <a href="#curiosidades">Curiosidades</a>
+    </div>
   </main>
 
+  <section id="tabela">
+    <h3>🧩 Tabela Periódica</h3>
+    <p>A Tabela Periódica organiza os elementos químicos de acordo com suas propriedades. 
+    Cada elemento é representado por um símbolo, número atômico e massa atômica. 
+    É uma das ferramentas mais importantes da ciência moderna.</p>
+  </section>
+
+  <section id="experimentos">
+    <h3>🔬 Experimentos</h3>
+    <p>Experimente o fascinante mundo das reações químicas! 
+    Desde vulcões caseiros até experimentos com mudança de cor e pH, a Química pode ser divertida, educativa e visualmente incrível.</p>
+  </section>
+
+  <section id="curiosidades">
+    <h3>💡 Curiosidades</h3>
+    <p>Sabia que o ouro é um dos poucos metais que não enferruja? 
+    Ou que o corpo humano é composto por cerca de 65% de oxigênio em massa? 
+    A Química explica esses e muitos outros fenômenos incríveis do nosso mundo!</p>
+  </section>
+
   <footer>
-    &copy; 2025 Mundo da Química — Feito com 💙 e curiosidade científica.
+    &copy; 2025 Mundo da Química — Desenvolvido com 💙 e curiosidade científica.
   </footer>
 
 </body>
